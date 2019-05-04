@@ -38,8 +38,4 @@
   hosts: all
   roles:
     - role: lean_delivery.java
-
-- name: Install Zookeeper
-  hosts: all
-  roles:
-   - role: lean_delivery.zookeeper
+    - role: lean_delivery.zookeeper
