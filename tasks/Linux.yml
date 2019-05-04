@@ -1,9 +1,6 @@
 ---
-- name: Check systemd zookeeper file exists
-  stat:
-    path: '/lib/systemd/system/{{ zk_service_name }}.service'
-  register: service_file
-  become: True
+- name: Populate service facts
+  service_facts:
 
 - name: Stop zookeeper service
   systemd:
@@ -11,8 +8,7 @@
     state: stopped
     enabled: False
   become: True
-  when: service_file.stat.exists
-
+  when: '{{ zk_service_name }}' in ansible_facts.services
 
 - name: Choose platform based task
   include_tasks: '{{ zk_task_uninstall }}'
