@@ -41,15 +41,6 @@ AWS zookeeper-uninstall:
   tags:
     - aws
 
-AWS Windows zookeeper-uninstall:
-  variables:
-    AWS_REGION: us-east-1
-  stage: deployment test
-  script:
-    - molecule test -s cloud-aws-windows
-  tags:
-    - aws
-
 EPC zookeeper-uninstall:
   variables:
     EPC_REGION: EPAM-BY2

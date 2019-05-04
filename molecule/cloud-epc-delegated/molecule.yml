@@ -17,6 +17,8 @@ platforms:
     wait_timeout: 3600
     groups:
       - rhel_family
+      - zookeeper
+
   - name: test-epc-ubuntu1804-zookeeper-uninstall
     image: Ubuntu18.04_64-bit
     shape: small
@@ -24,6 +26,8 @@ platforms:
     wait_timeout: 3600
     groups:
       - debian_family
+      - zookeeper
+
 provisioner:
   name: ansible
   log: True
