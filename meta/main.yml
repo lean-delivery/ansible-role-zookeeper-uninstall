@@ -18,13 +18,6 @@ galaxy_info:
     - name: "EL"
       versions:
         - "7"
-    - name: "Windows"
-      versions:
-        - "2008x64"
-        - "2008R2"
-        - "2012"
-        - "2012R2"
-        - "2016"
 
   galaxy_tags:
     - "development"
