@@ -24,6 +24,7 @@ platforms:
     groups:
       - rhel_family
       - zookeeper
+      - package_install
 
   - name: test-aws-ubuntu16-zookeeper-uninstall
     image: ami-09677e0a6b14905b0
@@ -54,6 +55,7 @@ platforms:
     groups:
       - debian_family
       - zookeeper
+      - package_install
 
   - name: test-aws-Debian9-zookeeper-uninstall
     image: ami-003f19e0e687de1cd
@@ -79,6 +81,8 @@ provisioner:
         zk_version: 3.4.14
         zk_remove_user: True
         zk_tarball_installation: True
+      package_install:
+        zk_tarball_installation: False
   playbooks:
     create: ../resources/provisioning/AWS/create.yml
     prepare: ../resources/prepare.yml

@@ -15,13 +15,13 @@
 
 
 - name: Choose platform based task
-  include_tasks: '{{ platform }}'
+  include_tasks: '{{ zk_task_uninstall }}'
   with_first_found:
     - '{{ zk_uninstall_type }}/{{ ansible_system }}.yml'
     - '{{ zk_uninstall_type }}/{{ ansible_os_family }}.yml'
     - not-supported.yml
   loop_control:
-    loop_var: platform
+    loop_var: zk_task_uninstall
 
 - name: Reload deamon
   systemd:
