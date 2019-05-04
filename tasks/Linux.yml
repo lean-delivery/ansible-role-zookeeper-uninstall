@@ -1,0 +1,29 @@
+---
+- name: Check systemd zookeeper file exists
+  stat:
+    path: '/lib/systemd/system/{{ zk_service_name }}.service'
+  register: service_file
+  become: True
+
+- name: Stop zookeeper service
+  systemd:
+    name: '{{ zk_service_name }}'
+    state: stopped
+    enabled: False
+  become: True
+  when: service_file.stat.exists
+
+
+- name: Choose platform based task
+  include_tasks: '{{ platform }}'
+  with_first_found:
+    - '{{ zk_uninstall_type }}/{{ ansible_system }}.yml'
+    - '{{ zk_uninstall_type }}/{{ ansible_os_family }}.yml'
+    - not-supported.yml
+  loop_control:
+    loop_var: platform
+
+- name: Reload deamon
+  systemd:
+    daemon_reload: True
+  become: True
